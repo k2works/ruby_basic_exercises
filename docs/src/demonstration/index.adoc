@@ -33,10 +33,24 @@ rectangle FizzBuzz {
 ----
 class FizzBuzz {
 + generate()
++ counter()
 }
 ----
 
 === シーケンス図
+[plantuml]
+----
+actor User
+
+User -> FizzBuzz: counter
+loop for each counter
+      activate FizzBuzz
+      FizzBuzz -> FizzBuzz: generate
+            User <- FizzBuzz
+      deactivate FizzBuzz
+end
+
+----
 
 == 実装
 [source,ruby]
