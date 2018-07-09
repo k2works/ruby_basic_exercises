@@ -526,7 +526,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-ruby" data-lang="ruby"># frozen_string_literal: true
-
+#
+# ==FizzBuzzクラス
+#
+# Author:: k2works
+# Version:: 0.0.1
+# License:: Ruby License
+#
 class FizzBuzz
   def generate(number)
     if number % 3 == 0 and number % 5 == 0
@@ -544,9 +550,16 @@ class FizzBuzz
       print generate(num)
     end
   end
-end
+end</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># frozen_string_literal: true
 
 require 'minitest/autorun'
+require './fizz_buzz'
+
 class FizzBuzzSpec &lt; Minitest::Spec
   describe FizzBuzz do
     describe '#generate' do
@@ -617,7 +630,7 @@ end</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-09 15:39:39 JST
+Last updated 2018-07-09 15:46:32 JST
 </div>
 </div>
 </body>

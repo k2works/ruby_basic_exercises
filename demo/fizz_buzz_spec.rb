@@ -1,25 +1,8 @@
 # frozen_string_literal: true
 
-class FizzBuzz
-  def generate(number)
-    if number % 3 == 0 and number % 5 == 0
-      'FizzBuzz'
-    elsif number % 3 == 0
-      'Fizz'
-    elsif number % 5 == 0
-      'Buzz'
-    end
-  end
-
-  def counter(count)
-    count.times do |num|
-      num += 1
-      print generate(num)
-    end
-  end
-end
-
 require 'minitest/autorun'
+require './fizz_buzz'
+
 class FizzBuzzSpec < Minitest::Spec
   describe FizzBuzz do
     describe '#generate' do

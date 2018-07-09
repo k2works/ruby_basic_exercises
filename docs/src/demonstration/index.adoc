@@ -55,7 +55,12 @@ end
 == 実装
 [source,ruby]
 ----
-include::../../../demo/FizzBuzz.rb[]
+include::../../../demo/fizz_buzz.rb[]
+----
+
+[source,ruby]
+----
+include::../../../demo/fizz_buzz_spec.rb[]
 ----
 
 == 参照
