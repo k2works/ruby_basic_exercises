@@ -1,0 +1,32 @@
+:toc: left
+:toclevels: 5
+:sectnums:
+
+= Rubyプログラミング基礎演習
+
+== 目的
+ユーザーからの要求をもとにRubyアプリケーション開発を演習する
+
+== 前提
+|===
+|ソフトウェア |バージョン |備考
+
+|ruby
+|2.4.4
+|
+|===
+
+
+== 構成
+* <<anchor-1,概要>>
+* <<anchor-2,演習>>
+* <<anchor-3,実演>>
+
+== 詳細
+=== link:./overview/PITCHME.md[概要][[anchor-1]]
+=== link:./excercies/index.html[演習][[anchor-2]]
+=== link:./demonstration/index.html[実演][[anchor-3]]
+
+== 参照
+* Asciidoctor[http://asciidoctor.org/]
+* PlantUML[http://www.plantuml.com]
