@@ -43,6 +43,11 @@ class FizzBuzzSpec < Minitest::Spec
         fizz_buzz = FizzBuzz.new
         expect(fizz_buzz.generate(50)).must_equal 'Buzz'
       end
+
+      it '15ならばFizzBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(15)).must_equal 'FizzBuzz'
+      end
     end
   end
 end
