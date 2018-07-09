@@ -489,7 +489,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>&#10003; <span class="line-through">「FizzBuzz」を出力できるようにする</span></p>
 </li>
 <li>
-<p>&#10063; 繰り返し実行できるようにする</p>
+<p>&#10003; <span class="line-through">繰り返し実行できるようにする</span></p>
 </li>
 </ul>
 </div>
@@ -537,6 +537,13 @@ class FizzBuzz
       'Buzz'
     end
   end
+
+  def counter(count)
+    count.times do |num|
+      num += 1
+      print generate(num)
+    end
+  end
 end
 
 require 'minitest/autorun'
@@ -580,9 +587,10 @@ class FizzBuzzSpec &lt; Minitest::Spec
     end
 
     describe '#counter' do
-      it '15ならばFizz Buzz FizzBuzzを返す' do
+      it '15ならばFizz Buzz Fizz Fizz Buzz Fizz FizzBuzzを返す' do
         fizz_buzz = FizzBuzz.new
-        expect(fizz_buzz.counter(15)).must_equal 'Fizz\nBuzz\nFizzBuzz'
+        output = 'FizzBuzzFizzFizzBuzzFizzFizzBuzz'
+        proc {fizz_buzz.counter(15)}.must_output output
       end
     end
   end
@@ -609,7 +617,7 @@ end</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-09 14:41:01 JST
+Last updated 2018-07-09 15:39:39 JST
 </div>
 </div>
 </body>

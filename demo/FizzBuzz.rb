@@ -10,6 +10,13 @@ class FizzBuzz
       'Buzz'
     end
   end
+
+  def counter(count)
+    count.times do |num|
+      num += 1
+      print generate(num)
+    end
+  end
 end
 
 require 'minitest/autorun'
@@ -53,9 +60,10 @@ class FizzBuzzSpec < Minitest::Spec
     end
 
     describe '#counter' do
-      it '15ならばFizz Buzz FizzBuzzを返す' do
+      it '15ならばFizz Buzz Fizz Fizz Buzz Fizz FizzBuzzを返す' do
         fizz_buzz = FizzBuzz.new
-        expect(fizz_buzz.counter(15)).must_equal 'Fizz\nBuzz\nFizzBuzz'
+        output = 'FizzBuzzFizzFizzBuzzFizzFizzBuzz'
+        proc {fizz_buzz.counter(15)}.must_output output
       end
     end
   end
