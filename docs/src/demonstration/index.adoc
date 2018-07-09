@@ -66,3 +66,4 @@ include::../../../demo/fizz_buzz_spec.rb[]
 == 参照
 * Asciidoctor[http://asciidoctor.org/]
 * PlantUML[http://www.plantuml.com]
+* Fizz Buzz[https://ja.wikipedia.org/wiki/Fizz_Buzz]
