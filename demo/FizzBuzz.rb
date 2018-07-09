@@ -1,7 +1,10 @@
 # frozen_string_literal: true
+
 class FizzBuzz
   def generate(number)
-    'Fizz'
+    if number % 3 == 0
+      'Fizz'
+    end
   end
 end
 
@@ -12,6 +15,16 @@ class FizzBuzzSpec < Minitest::Spec
       it '3ならばFizzを返す' do
         fizz_buzz = FizzBuzz.new
         expect(fizz_buzz.generate(3)).must_equal 'Fizz'
+      end
+
+      it '6ならばFizzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(6)).must_equal 'Fizz'
+      end
+
+      it '30ならばFizzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(30)).must_equal 'Fizz'
       end
     end
   end

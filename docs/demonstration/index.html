@@ -480,7 +480,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p>&#10063; 「Fizz」を出力できるようにする</p>
+<p>&#10003; <span class="line-through">「Fizz」を出力できるようにする</span></p>
 </li>
 <li>
 <p>&#10063; 「Buzz」を出力できるようにする</p>
@@ -522,9 +522,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-ruby" data-lang="ruby"># frozen_string_literal: true
+
 class FizzBuzz
   def generate(number)
-    'Fizz'
+    if number % 3 == 0
+      'Fizz'
+    end
   end
 end
 
@@ -535,6 +538,16 @@ class FizzBuzzSpec &lt; Minitest::Spec
       it '3ならばFizzを返す' do
         fizz_buzz = FizzBuzz.new
         expect(fizz_buzz.generate(3)).must_equal 'Fizz'
+      end
+
+      it '6ならばFizzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(6)).must_equal 'Fizz'
+      end
+
+      it '30ならばFizzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(30)).must_equal 'Fizz'
       end
     end
   end
@@ -561,7 +574,7 @@ end</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-09 13:41:58 JST
+Last updated 2018-07-09 13:58:45 JST
 </div>
 </div>
 </body>
