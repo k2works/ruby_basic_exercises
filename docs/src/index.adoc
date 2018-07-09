@@ -23,10 +23,11 @@
 * <<anchor-3,実演>>
 
 == 詳細
-=== link:./overview/PITCHME.md[概要][[anchor-1]]
+=== link:https://gitpitch.com/k2works/ruby_basic_exercises[概要][[anchor-1]]
 === link:./excercies/index.html[演習][[anchor-2]]
 === link:./demonstration/index.html[実演][[anchor-3]]
 
 == 参照
 * Asciidoctor[http://asciidoctor.org/]
 * PlantUML[http://www.plantuml.com]
+* GitPitch[https://gitpitch.com/]

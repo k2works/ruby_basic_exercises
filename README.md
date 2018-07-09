@@ -14,7 +14,7 @@ Rubyプログラミング基礎演習
 1. [演習](#演習)
 1. [実演](#実演)
 
-## [概要](./docs/src/dist/PITCHME.md)
+## [概要](https://gitpitch.com/k2works/ruby_basic_exercises)
 
 **[⬆ back to top](#構成)**
 
