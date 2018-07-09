@@ -577,7 +577,13 @@ class FizzBuzzSpec &lt; Minitest::Spec
         fizz_buzz = FizzBuzz.new
         expect(fizz_buzz.generate(30)).must_equal 'FizzBuzz'
       end
+    end
 
+    describe '#counter' do
+      it '15ならばFizz Buzz FizzBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.counter(15)).must_equal 'Fizz\nBuzz\nFizzBuzz'
+      end
     end
   end
 end</code></pre>
