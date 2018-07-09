@@ -4,6 +4,8 @@ class FizzBuzz
   def generate(number)
     if number % 3 == 0
       'Fizz'
+    elsif number % 5 == 0
+      'Buzz'
     end
   end
 end
@@ -30,6 +32,16 @@ class FizzBuzzSpec < Minitest::Spec
       it '5ならばBuzzを返す' do
         fizz_buzz = FizzBuzz.new
         expect(fizz_buzz.generate(5)).must_equal 'Buzz'
+      end
+
+      it '10ならばBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(10)).must_equal 'Buzz'
+      end
+
+      it '50ならばBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(50)).must_equal 'Buzz'
       end
     end
   end
