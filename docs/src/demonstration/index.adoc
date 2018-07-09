@@ -12,15 +12,58 @@
 
 == 設計
 === TODOリスト
+* [x] [line-through]#「Fizz」を出力できるようにする#
+* [x] [line-through]#「Buzz」を出力できるようにする#
+* [x] [line-through]#「FizzBuzz」を出力できるようにする#
+* [x] [line-through]#繰り返し実行できるようにする#
 
 === ユースケース図
+[plantuml]
+----
+left to right direction
+skinparam packageStyle rectangle
+actor User
+rectangle FizzBuzz {
+  User -- (値を出力する)
+}
+----
 
 === クラス図
+[plantuml]
+----
+class FizzBuzz {
++ generate()
++ counter()
+}
+----
 
 === シーケンス図
+[plantuml]
+----
+actor User
+
+User -> FizzBuzz: counter
+loop for each counter
+      activate FizzBuzz
+      FizzBuzz -> FizzBuzz: generate
+            User <- FizzBuzz
+      deactivate FizzBuzz
+end
+
+----
 
 == 実装
+[source,ruby]
+----
+include::../../../demo/fizz_buzz.rb[]
+----
+
+[source,ruby]
+----
+include::../../../demo/fizz_buzz_spec.rb[]
+----
 
 == 参照
 * Asciidoctor[http://asciidoctor.org/]
 * PlantUML[http://www.plantuml.com]
+* Fizz Buzz[https://ja.wikipedia.org/wiki/Fizz_Buzz]

@@ -477,26 +477,139 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_todoリスト">2.1. TODOリスト</h3>
-
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p>&#10003; <span class="line-through">「Fizz」を出力できるようにする</span></p>
+</li>
+<li>
+<p>&#10003; <span class="line-through">「Buzz」を出力できるようにする</span></p>
+</li>
+<li>
+<p>&#10003; <span class="line-through">「FizzBuzz」を出力できるようにする</span></p>
+</li>
+<li>
+<p>&#10003; <span class="line-through">繰り返し実行できるようにする</span></p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_ユースケース図">2.2. ユースケース図</h3>
-
+<div class="imageblock">
+<div class="content">
+<img src="diag-07daf5fb73f77e9c590e67749c77be47.png" alt="diag 07daf5fb73f77e9c590e67749c77be47" width="239" height="110">
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_クラス図">2.3. クラス図</h3>
-
+<div class="imageblock">
+<div class="content">
+<img src="diag-30514bea448a4952bf4493deab6498c4.png" alt="diag 30514bea448a4952bf4493deab6498c4" width="99" height="91">
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_シーケンス図">2.4. シーケンス図</h3>
-
+<div class="imageblock">
+<div class="content">
+<img src="diag-8541711c85f4dc80687e2cb8c6c7b89c.png" alt="diag 8541711c85f4dc80687e2cb8c6c7b89c" width="217" height="309">
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_実装">3. 実装</h2>
 <div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># frozen_string_literal: true
+#
+# ==FizzBuzzクラス
+#
+# Author:: k2works
+# Version:: 0.0.1
+# License:: Ruby License
+#
+class FizzBuzz
+  def generate(number)
+    if number % 3 == 0 and number % 5 == 0
+      'FizzBuzz'
+    elsif number % 3 == 0
+      'Fizz'
+    elsif number % 5 == 0
+      'Buzz'
+    end
+  end
 
+  def counter(count)
+    count.times do |num|
+      num += 1
+      print generate(num)
+    end
+  end
+end</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># frozen_string_literal: true
+
+require 'minitest/autorun'
+require './fizz_buzz'
+
+class FizzBuzzSpec &lt; Minitest::Spec
+  describe FizzBuzz do
+    describe '#generate' do
+      it '3ならばFizzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(3)).must_equal 'Fizz'
+      end
+
+      it '6ならばFizzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(6)).must_equal 'Fizz'
+      end
+
+      it '5ならばBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(5)).must_equal 'Buzz'
+      end
+
+      it '10ならばBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(10)).must_equal 'Buzz'
+      end
+
+      it '50ならばBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(50)).must_equal 'Buzz'
+      end
+
+      it '15ならばFizzBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(15)).must_equal 'FizzBuzz'
+      end
+
+      it '30ならばFizzBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        expect(fizz_buzz.generate(30)).must_equal 'FizzBuzz'
+      end
+    end
+
+    describe '#counter' do
+      it '15ならばFizz Buzz Fizz Fizz Buzz Fizz FizzBuzzを返す' do
+        fizz_buzz = FizzBuzz.new
+        output = 'FizzBuzzFizzFizzBuzzFizzFizzBuzz'
+        proc {fizz_buzz.counter(15)}.must_output output
+      end
+    end
+  end
+end</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -510,6 +623,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li>
 <p>PlantUML[<a href="http://www.plantuml.com" class="bare">http://www.plantuml.com</a>]</p>
 </li>
+<li>
+<p>Fizz Buzz[<a href="https://ja.wikipedia.org/wiki/Fizz_Buzz" class="bare">https://ja.wikipedia.org/wiki/Fizz_Buzz</a>]</p>
+</li>
 </ul>
 </div>
 </div>
@@ -517,7 +633,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-09 11:31:30 JST
+Last updated 2018-07-09 15:59:33 JST
 </div>
 </div>
 </body>
