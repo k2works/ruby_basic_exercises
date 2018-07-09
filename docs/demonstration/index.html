@@ -523,6 +523,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="highlight"><code class="language-ruby" data-lang="ruby"># frozen_string_literal: true
 class FizzBuzz
+end
+
+require 'minitest/autorun'
+class FizzBuzzSpec &lt; Minitest::Spec
+  describe FizzBuzz do
+    it '3ならばFizzを返す' do
+      expect(3).must_equal 'Fizz'
+    end
+  end
 end</code></pre>
 </div>
 </div>
