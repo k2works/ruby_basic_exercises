@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd docs
 rm index.html
 rm -rf overview/
 rm -rf excercies/
