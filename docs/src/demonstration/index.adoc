@@ -38,6 +38,10 @@ class FizzBuzz {
 === シーケンス図
 
 == 実装
+[source,ruby]
+----
+include::../../../demo/FizzBuzz.rb[]
+----
 
 == 参照
 * Asciidoctor[http://asciidoctor.org/]
