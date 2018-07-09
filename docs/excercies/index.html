@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.7.1">
-<title>アプリケーション開発演習</title>
+<title>在庫管理アプリケーション開発演習</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -432,60 +432,355 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>アプリケーション開発演習</h1>
+<h1>在庫管理アプリケーション開発演習</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_仕様">1. 仕様</a></li>
-<li><a href="#_設計">2. 設計</a>
+<li><a href="#_要件">1. 要件</a>
 <ul class="sectlevel2">
-<li><a href="#_todoリスト">2.1. TODOリスト</a></li>
-<li><a href="#_ユースケース図">2.2. ユースケース図</a></li>
-<li><a href="#_クラス図">2.3. クラス図</a></li>
-<li><a href="#_シーケンス図">2.4. シーケンス図</a></li>
+<li><a href="#_在庫管理の業務内容">1.1. 在庫管理の業務内容</a>
+<ul class="sectlevel3">
+<li><a href="#_仕入入荷">1.1.1. 仕入入荷</a></li>
+<li><a href="#_販売出荷">1.1.2. 販売出荷</a></li>
+<li><a href="#_移送入庫出荷">1.1.3. 移送入庫／出荷</a></li>
+<li><a href="#_返品入庫出庫">1.1.4. 返品入庫／出庫</a></li>
+<li><a href="#_棚卸">1.1.5. 棚卸</a></li>
+<li><a href="#_そのほかの作業">1.1.6. そのほかの作業</a></li>
 </ul>
 </li>
-<li><a href="#_実装">3. 実装</a></li>
-<li><a href="#_参照">4. 参照</a></li>
+<li><a href="#_在庫管理業務のユースケース">1.2. 在庫管理業務のユースケース</a></li>
+</ul>
+</li>
+<li><a href="#_仕様">2. 仕様</a>
+<ul class="sectlevel2">
+<li><a href="#_uc_02仕入れ商品を入荷する">2.1. UC-02:仕入れ商品を入荷する</a></li>
+<li><a href="#_uc_03移送品を入庫する">2.2. UC-03:移送品を入庫する</a></li>
+<li><a href="#_uc_04返品を入庫する">2.3. UC-04:返品を入庫する</a></li>
+<li><a href="#_uc_06販売商品を出荷する">2.4. UC-06:販売商品を出荷する</a></li>
+<li><a href="#_uc_07移送品を出庫する">2.5. UC-07:移送品を出庫する</a></li>
+<li><a href="#_uc_08返品を出庫する">2.6. UC-08:返品を出庫する</a></li>
+<li><a href="#_uc_09商品在庫を棚卸する">2.7. UC-09:商品在庫を棚卸する</a></li>
+</ul>
+</li>
+<li><a href="#_設計">3. 設計</a>
+<ul class="sectlevel2">
+<li><a href="#_todoリスト">3.1. TODOリスト</a></li>
+<li><a href="#_ユースケース図">3.2. ユースケース図</a></li>
+<li><a href="#_クラス図">3.3. クラス図</a></li>
+<li><a href="#_シーケンス図">3.4. シーケンス図</a></li>
+</ul>
+</li>
+<li><a href="#_実装">4. 実装</a></li>
+<li><a href="#_参照">5. 参照</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_仕様">1. 仕様</h2>
+<h2 id="_要件">1. 要件</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_在庫管理の業務内容">1.1. 在庫管理の業務内容</h3>
+<div class="paragraph">
+<p>在庫管理は仕入れと販売の間に位置する業務である。</p>
+</div>
+<div class="paragraph">
+<p>具体的には以下の種類の業務が存在する。</p>
+</div>
+<div class="sect3">
+<h4 id="_仕入入荷">1.1.1. 仕入入荷</h4>
+<div class="paragraph">
+<p>仕入先に発注した商品が倉庫などに納品されることを「仕入入荷」という。</p>
+</div>
+<div class="paragraph">
+<p>この時、発注内容と納入されてきた商品の種類、数量、品質などに問題がないかをチェック（検品）する。</p>
+</div>
+<div class="paragraph">
+<p>検品の結果、問題がなければ納入された商品を倉庫の所定場所に保管する（入庫）。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-7d542232238100a7d4f61b587223efbe.png" alt="diag 7d542232238100a7d4f61b587223efbe" width="390" height="375">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_販売出荷">1.1.2. 販売出荷</h4>
+<div class="paragraph">
+<p>顧客からの受注内容に基づいて、倉庫担当が商品を出荷する作業である。</p>
+</div>
+<div class="paragraph">
+<p>この出荷作業を行うために、必要な商品を集める作業を「ピッキング」と言う。</p>
+</div>
+<div class="paragraph">
+<p>販売出荷の場合は、出荷用に集めた商品を納品用に梱包し、納品書などの納入書類をつけて顧客宛の配送に出す。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a1b0cb5ca55a588582f066f0bdf39262.png" alt="diag a1b0cb5ca55a588582f066f0bdf39262" width="426" height="443">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_移送入庫出荷">1.1.3. 移送入庫／出荷</h4>
+<div class="paragraph">
+<p>商品を倉庫から別の倉庫へ移すことを「移送」と呼ぶ。</p>
+</div>
+<div class="paragraph">
+<p>この移送のために、移送元の倉庫から出庫して、移送先の倉庫に入庫する作業をそれぞれ「移送出庫」「移送入庫」と呼ぶ。</p>
+</div>
+<div class="paragraph">
+<p>これらの作業自体は、仕入入荷と販売出荷と大きく違わないが、添付する書類の種類が違ったり、梱包や検品の作業内容が違うなどの特徴がある。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_返品入庫出庫">1.1.4. 返品入庫／出庫</h4>
+<div class="paragraph">
+<p>顧客に出荷した商品が返品されてきた場合の入庫作業を「返品入庫」と呼ぶ。</p>
+</div>
+<div class="paragraph">
+<p>顧客からの返品には、例えば、不良品で返品されてたり、顧客都合で返品されたりなど、様々な原因がある。</p>
+</div>
+<div class="paragraph">
+<p>返品入庫では、商品の検品を行うだけでなく、こうした返品理由を確認してから、そのまま再度入庫するのか、不良品として廃棄するなどの対応をとるかを判断する。</p>
+</div>
+<div class="paragraph">
+<p>また、仕入先に商品を返品する作業のことを「返品出荷」と呼ぶ。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_棚卸">1.1.5. 棚卸</h4>
+<div class="paragraph">
+<p>商品在庫の数量や品質をチェックする作業を「棚卸」と呼ぶ。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_そのほかの作業">1.1.6. そのほかの作業</h4>
+<div class="paragraph">
+<p>そのほかにも、在庫管理にはさまざまな作業がある。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_在庫管理業務のユースケース">1.2. 在庫管理業務のユースケース</h3>
+<div class="paragraph">
+<p>これらの業務のうち、商品の入庫及び商品の出庫・棚卸業務をシステム化の範囲とする。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-64dbe63416a69b2dd778740b6c7985c9.png" alt="diag 64dbe63416a69b2dd778740b6c7985c9" width="636" height="548">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_仕様">2. 仕様</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">No</th>
+<th class="tableblock halign-left valign-top">ユースケース</th>
+<th class="tableblock halign-left valign-top">概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">商品を入庫する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は倉庫宛に送付された商品が、種類／数量が正しいか、品質に問題がないかをチェックする。問題がなければ商品を所定の場所で保管する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-02</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">仕入れ商品を入庫する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、倉庫宛に送付されてきた商品が、仕入先に対する発注内容と、種類／数量が正しいか、品質に問題がないかをチェックする。問題がなければ商品を所定の場所で保管する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-03</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">移送品を入庫する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、ほかの倉庫から送付されてきた商品が、発注内容と、種類／数量が正しいか、品質に問題がないかをチェックする。問題がなければ商品を所定の場所で保管する</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-04</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">返品を入庫する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、顧客から返品されてきた商品が、出荷内容と、種類／数量が正しいか、品質に問題がないかをチェックする。問題がなければ商品を所定の場所で保管する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-05</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">商品を出庫する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、出荷指示において指定された種類／数量の商品をピッキングし、梱包して出庫する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-06</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">販売商品を出荷する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、出荷指示において指定された種類／数量の商品をピッキングし、梱包。納品書などの書類を添付して出荷する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-07</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">移送品を出庫する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、移送指示において指定された種類／数量の商品をピッキングし、梱包。送り状などの書類を添付して出荷する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-08</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">返品を出荷する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、返品指示において指定された商品をピッキングし、梱包。送り状などの書類を添付して仕入先に出荷する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC-09</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">商品在庫を棚卸する</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">倉庫担当は、商品在庫の実数を調査し、システムに登録する。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_uc_02仕入れ商品を入荷する">2.1. UC-02:仕入れ商品を入荷する</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>CSVファイルを読み込み集計した結果をCSVファイルに出力する</p>
+</li>
+<li>
+<p>読み込みCSVファイルは商品名ごとに受入数を集計する</p>
+</li>
+<li>
+<p>読み込みCSVファイル仕様は以下とする</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ファイルフォーマット</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>商品名,受入数
+&lt;String&gt;,&lt;Number&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ファイル名</p>
+</div>
+<div class="paragraph">
+<p><code>YYYYMMDD_INPUT.csv</code></p>
+</div>
+<div class="paragraph">
+<p><code>YYYYMMDD</code> には作成年月日が入る</p>
+</div>
+<div class="paragraph">
+<p>サンプルイメージは<a href="./20180701_INPUT.csv">20180701_INPUT.csv</a>を参照</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-csv" data-lang="csv">商品名,受入数
+商品A,1
+商品A,1
+商品A,1
+商品A,1
+商品A,1
+商品A,1
+商品B,1
+商品B,2
+商品B,3
+商品C,10</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>出力CSVファイル仕様は以下とする</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ファイルフォーマット</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>商品名,受入数
+&lt;String&gt;,&lt;Number&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ファイル名</p>
+</div>
+<div class="paragraph">
+<p><code>YYYYMMDD_OUTPUT.csv</code></p>
+</div>
+<div class="paragraph">
+<p><code>YYYYMMDD</code> には作成年月日が入る</p>
+</div>
+<div class="paragraph">
+<p>サンプルイメージは<a href="./20180701_OUTPUT.csv">20180701_OUTPUT.csv</a>を参照</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-csv" data-lang="csv">商品名,受入数
+商品A,6
+商品B,6
+商品C,10</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uc_03移送品を入庫する">2.2. UC-03:移送品を入庫する</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_uc_04返品を入庫する">2.3. UC-04:返品を入庫する</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_uc_06販売商品を出荷する">2.4. UC-06:販売商品を出荷する</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_uc_07移送品を出庫する">2.5. UC-07:移送品を出庫する</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_uc_08返品を出庫する">2.6. UC-08:返品を出庫する</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_uc_09商品在庫を棚卸する">2.7. UC-09:商品在庫を棚卸する</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_設計">3. 設計</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_todoリスト">3.1. TODOリスト</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_ユースケース図">3.2. ユースケース図</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_クラス図">3.3. クラス図</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_シーケンス図">3.4. シーケンス図</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_実装">4. 実装</h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_設計">2. 設計</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_todoリスト">2.1. TODOリスト</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_ユースケース図">2.2. ユースケース図</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_クラス図">2.3. クラス図</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_シーケンス図">2.4. シーケンス図</h3>
-
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_実装">3. 実装</h2>
-<div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_参照">4. 参照</h2>
+<h2 id="_参照">5. 参照</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -502,7 +797,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-09 11:46:31 JST
+Last updated 2018-07-09 18:34:28 JST
 </div>
 </div>
 </body>
