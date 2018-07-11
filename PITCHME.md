@@ -560,5 +560,6 @@ end
 ### 開発実演
 
 最終的な完成イメージが[こちら](https://k2works.github.io/ruby_basic_exercises/demonstration/index.html)になります。
+---
 
 ### おわり
