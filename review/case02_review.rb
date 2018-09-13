@@ -1,13 +1,13 @@
 class Zaiko
-    def initialize
-        @file_path1 = '20180701_INPUT.csv'
-        @file_path2 = '20180701_OUTPUT.csv'
+    def initialize(input,output)
+        @file_path1 = input
+        @file_path2 = output
         @data=[]
         @shou=[]
         @su=[]
     end
 
-    def execute
+    def create_summary_file
         read
         summary
         write
