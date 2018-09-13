@@ -12,10 +12,10 @@ class Zaiko
     @shukei_youso_su = ON
   end
 
-  def shukei_file_sakusei
+  def shukei_file_sakusei(outp)
     convert_input_sutika
     shukei
-    outp('20180701_OUTPUT.csv')
+    outp(outp)
   end
 
   private

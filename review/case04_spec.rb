@@ -16,7 +16,7 @@ class Uc04Spec < Minitest::Spec
     describe '#shukei_file_sakusei' do
       it 'CSVファイルを出力する' do
         zaiko = Zaiko.new('20180701_INPUT.csv')
-        zaiko.shukei_file_sakusei
+        zaiko.shukei_file_sakusei('20180701_OUTPUT.csv')
         output = <<~EOS
           商品名,受入数
           商品A,6
