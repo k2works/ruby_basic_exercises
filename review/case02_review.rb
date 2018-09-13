@@ -1,4 +1,4 @@
-class Case02
+class Zaiko
     def self.execute
         file_path1 = '20180701_INPUT.csv'
         file_path2 = '20180701_OUTPUT.csv'
@@ -37,9 +37,6 @@ class Case02
                 su[c]+=d[1]
             end
         end
-
-        p shou
-        p su
 
         File.open(file_path2, 'w') do |f|
             f.write("商品名,受入数")

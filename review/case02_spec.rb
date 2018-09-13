@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require '../review/case02_review'
 
 class Uc02Spec < Minitest::Spec
-  describe Case02 do
+  describe Zaiko do
     it 'CSVファイルを出力する' do
       output = <<~EOS
           商品名,受入数
@@ -12,7 +12,7 @@ class Uc02Spec < Minitest::Spec
           商品B,6
           商品C,10
       EOS
-      Case02.execute
+      Zaiko.execute
       expected_csv = output
       actual_csv = File.open('20180701_OUTPUT.csv').read
       assert_equal(expected_csv, actual_csv)
