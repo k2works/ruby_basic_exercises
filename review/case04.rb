@@ -12,9 +12,9 @@ class Zaiko
         outmake
 #作成配列確認   p @input,@output
         #重複回避用スイッチ
-        @b=0
+        @jyufuku_kaihi_flg=0
         #集計用の要素数
-        @c=1
+        @shukei_youso_su=1
     end
 
     ##inputdataを配列に格納するメソッド
@@ -45,25 +45,25 @@ class Zaiko
             #outputに入れていくのでinputの列の全判定
             (@input.count).times do |i|
                 #重なりを判定
-                @c.times do |j|
+                @shukei_youso_su.times do |j|
                     if(@input[i][0]==@output[j][0])
                         @output[j][1]+=@input[i][1]
                         #ダブり回避スイッチおん
-                        @b=1
+                        @jyufuku_kaihi_flg=1
                     end
                 end
                 #新規格納
-                if(@b==0&&i!=0)
-                    @output[@c][0]=@input[i][0]
-                    @output[@c][1]=@input[i][1]
-                    @c+=1
+                if(@jyufuku_kaihi_flg==0&&i!=0)
+                    @output[@shukei_youso_su][0]=@input[i][0]
+                    @output[@shukei_youso_su][1]=@input[i][1]
+                    @shukei_youso_su+=1
                 #要素名を[0]に格納
                 else
                     @output[0][0]=@input[0][0]
                     @output[0][1]=@input[0][1]
                 end
             #重複回避の初期化
-            @b=0
+            @jyufuku_kaihi_flg=0
             end
 #計算結果確認       p @output
     end
@@ -77,7 +77,7 @@ class Zaiko
     def make(out)
         open(out,'w') do |f|
             #一行
-                @c.times do |j|
+                @shukei_youso_su.times do |j|
                      f.write(@output[j][0])
                      f.write(",")
                      f.write(@output[j][1])
