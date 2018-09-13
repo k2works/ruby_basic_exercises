@@ -1,18 +1,20 @@
 class Zaiko
-    def self.execute
+    def initialize
         @file_path1 = '20180701_INPUT.csv'
         @file_path2 = '20180701_OUTPUT.csv'
         @data=[]
         @shou=[]
         @su=[]
+    end
 
+    def execute
         read
         summary
         write
     end
 
     private
-    def self.write
+    def write
         File.open(@file_path2, 'w') do |f|
             f.write("商品名,受入数")
             f.write("\n")
@@ -25,7 +27,7 @@ class Zaiko
         end
     end
 
-    def self.summary
+    def summary
         i = 0
         @data.each do |d|
             @data[i] = d.split(",")
@@ -48,7 +50,7 @@ class Zaiko
         end
     end
 
-    def self.read
+    def read
         File.open(@file_path1, mode = "r") do |f|
             i = 0
             f.gets

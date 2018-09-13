@@ -12,7 +12,8 @@ class Uc02Spec < Minitest::Spec
           商品B,6
           商品C,10
       EOS
-      Zaiko.execute
+      zaiko = Zaiko.new
+      zaiko.execute
       expected_csv = output
       actual_csv = File.open('20180701_OUTPUT.csv').read
       assert_equal(expected_csv, actual_csv)
