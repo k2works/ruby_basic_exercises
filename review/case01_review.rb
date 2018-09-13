@@ -1,4 +1,4 @@
-class Uc02
+class Zaiko
     def initialize
         @insdate = []
         open('20180701_INPUT.csv', 'r') do |f|
@@ -66,7 +66,7 @@ class Uc02
     end
 end
 
-uc02output = Uc02.new
+uc02output = Zaiko.new
 uc02output.intconversion
 uc02output.add
 uc02output.add_header
