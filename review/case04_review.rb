@@ -1,7 +1,7 @@
 ### next　例外
 
 
-class Shuke
+class Zaiko
  ##初期化メソッド 出力配列、入力配列、計算に必要な関数を作成
     def initialize(inp)
         #出力配列
@@ -10,11 +10,17 @@ class Shuke
         #入力配列
         @output = Array.new(@input.count, nil)
         outmake
-#作成配列確認   p @input,@output
+#   p @input,@output
         #重複回避用スイッチ
         @b=0
         #集計用の要素数
         @c=1
+    end
+
+    def shukei_file_sakusei
+        sutika
+        shukei
+        outp('20180701_OUTPUT.csv')
     end
 
     ##inputdataを配列に格納するメソッド
@@ -86,13 +92,3 @@ class Shuke
         end
     end
 end
-
-
-#クラス作成
-a=Shuke.new("20180701_INPUT.csv")
-#数値化
-a.sutika
-#集計
-a.shukei
-#出力
-a.outp('20180701_OUTPUT.csv')

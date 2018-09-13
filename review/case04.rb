@@ -1,43 +1,43 @@
 ### next　例外
 
 
-class Shuke
+class Zaiko
  ##初期化メソッド 出力配列、入力配列、計算に必要な関数を作成
     def initialize(inp)
         #出力配列
         @input=[]
         inpmake(inp)
         #入力配列
-        @output = Array.new(@input.count, nil)        
+        @output = Array.new(@input.count, nil)
         outmake
-#作成配列確認   p @input,@output        
+#作成配列確認   p @input,@output
         #重複回避用スイッチ
         @b=0
         #集計用の要素数
-        @c=1   
+        @c=1
     end
 
     ##inputdataを配列に格納するメソッド
     def inpmake(inp)
         open(inp) do |file|
             file.each do |s|
-              @input << s.chomp.split(",")            
-            end 
+              @input << s.chomp.split(",")
+            end
         end
     end
-    
+
     ##集計用の配列のを作成するメソッド
-    def outmake 
-        @output.length.times{ |i|            
-            @output[i] = Array.new(2, 0)   
-        } 
+    def outmake
+        @output.length.times{ |i|
+            @output[i] = Array.new(2, 0)
+        }
     end
 
     ##配列@inputの文字を数値化するメソッド
     def sutika
         (@input.count-1).times do |i|
             @input[i+1][1]=@input[i+1][1].to_i
-        end       
+        end
     end
 
     ##集計用のメソッド
@@ -56,7 +56,7 @@ class Shuke
                 if(@b==0&&i!=0)
                     @output[@c][0]=@input[i][0]
                     @output[@c][1]=@input[i][1]
-                    @c+=1                
+                    @c+=1
                 #要素名を[0]に格納
                 else
                     @output[0][0]=@input[0][0]
@@ -69,7 +69,7 @@ class Shuke
     end
 
     ##makeメソッド呼び出し用のメソッド
-        def outp(out)            
+        def outp(out)
                 make(out)
         end
 
@@ -89,7 +89,7 @@ end
 
 
 #クラス作成
-a=Shuke.new("YYYYMMDD_INPUT.csv")
+a=Zaiko.new("YYYYMMDD_INPUT.csv")
 #数値化
 a.sutika
 #集計
