@@ -51,6 +51,10 @@ class Uc02
         end
     end
 
+    def add_header
+        @check[1] = '受入数'
+    end
+
     def write
         lf = 0
         open('20180701_OUTPUT.csv', 'w') do |f|
@@ -65,4 +69,5 @@ end
 uc02output = Uc02.new
 uc02output.intconversion
 uc02output.add
+uc02output.add_header
 uc02output.write

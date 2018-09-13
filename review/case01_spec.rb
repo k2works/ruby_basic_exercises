@@ -19,11 +19,21 @@ class Uc02Spec < Minitest::Spec
         expect(uc02.instance_variable_get(:@check)).must_equal ['商品名', 0, '商品A', 6, '商品B', 6, '商品C', 10]
       end
     end
+    describe '#add_headfer' do
+      it 'ヘッダーを作る' do
+        uc02 = Uc02.new
+        uc02.intconversion
+        uc02.add
+        uc02.add_header
+        expect(uc02.instance_variable_get(:@check)).must_equal ['商品名', '受入数', '商品A', 6, '商品B', 6, '商品C', 10]
+      end
+    end
     describe '#write' do
       it 'CSVファイルを出力する' do
         uc02 = Uc02.new
         uc02.intconversion
         uc02.add
+        uc02.add_header
         uc02.write
         output = <<~EOS
           商品名,受入数
