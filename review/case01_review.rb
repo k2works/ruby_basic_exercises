@@ -1,6 +1,7 @@
 class Zaiko
-    def initialize
-        @insdate = []
+    def initialize(file)
+      @input_file = file
+      @insdate = []
     end
 
     def summary_file_output
@@ -14,7 +15,7 @@ class Zaiko
     private
 
     def read
-        open('20180701_INPUT.csv', 'r') do |f|
+        open(@input_file, 'r') do |f|
             @insdate = f.read
         end
     end

@@ -7,7 +7,7 @@ class Uc01Spec < Minitest::Spec
   describe Zaiko do
     describe '#summary_file_output' do
       it '集計した在庫ファイルを出力する' do
-        zaiko = Zaiko.new
+        zaiko = Zaiko.new('20180701_INPUT.csv')
         zaiko.summary_file_output
         output = <<~EOS
           商品名,受入数
