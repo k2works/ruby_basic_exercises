@@ -6,6 +6,13 @@ class Zaiko
         end
     end
 
+    def summary_file_output
+        intconversion
+        add
+        add_header
+        write
+    end
+
     def intconversion
         str = @insdate
         s1 = []
@@ -65,9 +72,3 @@ class Zaiko
         end
     end
 end
-
-uc02output = Zaiko.new
-uc02output.intconversion
-uc02output.add
-uc02output.add_header
-uc02output.write
