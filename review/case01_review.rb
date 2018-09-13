@@ -1,16 +1,22 @@
 class Zaiko
     def initialize
         @insdate = []
-        open('20180701_INPUT.csv', 'r') do |f|
-            @insdate = f.read
-        end
     end
 
     def summary_file_output
+        read
         intconversion
         add
         add_header
         write
+    end
+
+    private
+
+    def read
+        open('20180701_INPUT.csv', 'r') do |f|
+            @insdate = f.read
+        end
     end
 
     def intconversion
