@@ -12,14 +12,7 @@ class Uc04Spec < Minitest::Spec
         expect( shuke.instance_variable_get(:@output)).must_equal [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
       end
     end
-    describe '#shukei' do
-      it '集計する' do
-        zaiko = Zaiko.new('20180701_INPUT.csv')
-        zaiko.convert_input_sutika
-        zaiko.shukei
-        expect( zaiko.instance_variable_get(:@output)).must_equal [["商品名", "受入数"], ["商品A", 6], ["商品B", 6], ["商品C", 10], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-      end
-    end
+
     describe '#shukei_file_sakusei' do
       it 'CSVファイルを出力する' do
         zaiko = Zaiko.new('20180701_INPUT.csv')

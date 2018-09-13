@@ -19,6 +19,8 @@ class Zaiko
         outp('20180701_OUTPUT.csv')
     end
 
+    private
+
     def set_inputdata_hairetu(inp)
         open(inp) do |file|
             file.each do |s|
@@ -61,8 +63,6 @@ class Zaiko
                 end
         end
     end
-
-    private
 
     def sinki_kakunou(i)
         if (@jyufuku_kaihi_flg == 0 && i != 0)
