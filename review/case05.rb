@@ -30,11 +30,12 @@ class CsvStockData
   end
 
   def summary_data
-    @data_list.each do |data|
-      data_hash = { shouhinnmei: data[0], ukeiresu: data[1].to_i }
-      @output_data_list << data_hash
-    end
-    @merged_output_data_list = @output_data_list.flatten.map(&:values).group_by(&:first).map { |id, items| { shouhinnmei: id, ukeiresu: items.map(&:last).inject(:+) } }
+    @output_data_list = @data_list.map { |id, num| { shouhinnmei: id, ukeiresu: num.to_i } }
+    @merged_output_data_list = @output_data_list
+                               .flatten
+                               .map(&:values)
+                               .group_by(&:first)
+                               .map { |id, items| { shouhinnmei: id, ukeiresu: items.map(&:last).inject(:+) } }
   end
 
   def setup_header
