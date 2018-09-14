@@ -2,7 +2,7 @@
 
 require 'csv'
 
-class Stock
+class CsvStockData
   def initialize(input_file, output_file)
     @input_file = input_file
     @output_file = output_file
@@ -10,15 +10,6 @@ class Stock
     @merged_output_data_list = []
     @output_data_list = []
   end
-
-  def goods_received
-    read_csv_file
-    setup_csv_header
-    summary_csv_data
-    output_csv_file
-  end
-
-  private
 
   def output_csv_file
     CSV.open(@output_file, 'w') do |output_line|
@@ -46,5 +37,18 @@ class Stock
 
   def read_csv_file
     @data_list = CSV.read(@input_file)
+  end
+end
+
+class Stock
+  def initialize(data)
+    @data = data
+  end
+
+  def goods_received
+    @data.read_csv_file
+    @data.setup_csv_header
+    @data.summary_csv_data
+    @data.output_csv_file
   end
 end

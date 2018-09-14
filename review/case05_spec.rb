@@ -13,8 +13,8 @@ class Uc05Spec < Minitest::Spec
           商品B,6
           商品C,10
         EOS
-
-        stock = Stock.new('20180701_INPUT.csv','20180731_OUTPUT.csv')
+        data = CsvStockData.new('20180701_INPUT.csv','20180731_OUTPUT.csv')
+        stock = Stock.new(data)
         stock.goods_received
         expected_csv = output
         actual_csv = File.open('20180731_OUTPUT.csv').read
