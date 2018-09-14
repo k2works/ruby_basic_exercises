@@ -11,6 +11,15 @@ class CsvStockData
     @output_data_list = []
   end
 
+  def create_summary_data
+    read_file
+    setup_header
+    summary_data
+    output_file
+  end
+
+  private
+
   def output_file
     CSV.open(@output_file, 'w') do |output_line|
       output_line << [@shouhinnmei, @ukeiresu]
@@ -46,9 +55,6 @@ class Stock
   end
 
   def goods_received
-    @data.read_file
-    @data.setup_header
-    @data.summary_data
-    @data.output_file
+    @data.create_summary_data
   end
 end
