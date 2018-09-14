@@ -15,7 +15,7 @@ class Uc05Spec < Minitest::Spec
         EOS
 
         stock = Stock.new('20180701_INPUT.csv')
-        stock.output_csv_file
+        stock.goods_received
         expected_csv = output
         actual_csv = File.open('20180731_OUTPUT.csv').read
         assert_equal(expected_csv, actual_csv)
