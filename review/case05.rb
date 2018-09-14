@@ -3,8 +3,9 @@
 require 'csv'
 
 class Stock
-  def initialize(input_file)
+  def initialize(input_file, output_file)
     @input_file = input_file
+    @output_file = output_file
     @data_list = []
     @merged_output_data_list = []
     @output_data_list = []
@@ -20,7 +21,7 @@ class Stock
   private
 
   def output_csv_file
-    CSV.open('20180731_OUTPUT.csv', 'w') do |output_line|
+    CSV.open(@output_file, 'w') do |output_line|
       output_line << [@shouhinnmei, @ukeiresu]
       @merged_output_data_list.each do |input_line|
         output_line << [input_line[:shouhinnmei], input_line[:ukeiresu]]
