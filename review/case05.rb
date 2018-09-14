@@ -6,47 +6,50 @@ class CsvStockData
   def initialize(input_file, output_file)
     @input_file = input_file
     @output_file = output_file
-    @data_list = []
-    @merged_output_data_list = []
-    @output_data_list = []
+    @data = []
+    @data_header = {}
+    @data_body = []
   end
 
   def create_summary_data
     read_file
     setup_header
-    summary_data
-    output_file
+    setup_body
+    output_file(summary_data)
   end
 
   private
 
-  def output_file
+  def output_file(summary_data)
     CSV.open(@output_file, 'w') do |output_line|
-      output_line << [@shouhinnmei, @ukeiresu]
-      @merged_output_data_list.each do |input_line|
+      output_line << [@data_header[:shouhinnmei], @data_header[:ukeiresu]]
+      summary_data.each do |input_line|
         output_line << [input_line[:shouhinnmei], input_line[:ukeiresu]]
       end
     end
   end
 
   def summary_data
-    @output_data_list = @data_list.map { |id, num| { shouhinnmei: id, ukeiresu: num.to_i } }
-    @merged_output_data_list = @output_data_list
-                               .flatten
-                               .map(&:values)
-                               .group_by(&:first)
-                               .map { |id, items| { shouhinnmei: id, ukeiresu: items.map(&:last).inject(:+) } }
+    output_data_list = @data_body.map { |id, num| { shouhinnmei: id, ukeiresu: num.to_i } }
+    output_data_list
+      .flatten
+      .map(&:values)
+      .group_by(&:first)
+      .map { |id, items| { shouhinnmei: id, ukeiresu: items.map(&:last).inject(:+) } }
+  end
+
+  def setup_body
+    @data_body = @data.dup
+    @data_body.shift
   end
 
   def setup_header
-    header = @data_list.first
-    @shouhinnmei = header[0]
-    @ukeiresu = header[1]
-    @data_list.shift
+    header = @data.first
+    @data_header = { shouhinnmei: header[0], ukeiresu: header[1] }
   end
 
   def read_file
-    @data_list = CSV.read(@input_file)
+    @data = CSV.read(@input_file)
   end
 end
 
