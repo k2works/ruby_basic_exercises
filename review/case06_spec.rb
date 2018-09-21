@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require '../review/case05'
+require '../review/case06'
 
-class Uc05Spec < Minitest::Spec
-  describe Stock do
-    describe '仕入れ商品を入荷する' do
+class Uc06Spec < Minitest::Spec
+  class Uc06Spec < Minitest::Spec
+    describe Case06 do
       before do
-        INPUT_FILE = '20180701_INPUT.csv'
-        OUTPUT_FILE = '20180731_OUTPUT.csv'
+        OUTPUT_FILE = '20180701_OUTPUT.csv'
         File.delete(OUTPUT_FILE) if File.exist?(OUTPUT_FILE)
       end
 
@@ -19,11 +18,9 @@ class Uc05Spec < Minitest::Spec
           商品B,6
           商品C,10
         EOS
-        data = CsvStockData.new(INPUT_FILE, OUTPUT_FILE)
-        stock = Stock.new(data)
-        stock.goods_received
+        Case06.execute
         expected_csv = output
-        actual_csv = File.open(OUTPUT_FILE).read
+        actual_csv = File.open('20180701_OUTPUT.csv').read
         assert_equal(expected_csv, actual_csv)
       end
     end
